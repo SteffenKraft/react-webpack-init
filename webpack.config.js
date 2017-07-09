@@ -8,37 +8,40 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: '[name].bundle.js'
+    filename: '[name].bundle.js',
   },
   devServer: {
-    contentBase: path.resolve(__dirname, './src')
+    contentBase: path.resolve(__dirname, './src'),
   },
   module: {
     loaders: [
-        {
-          test: /\.(js|jsx)$/,
-          loader: 'babel-loader',
-          exclude: /node_modules/
-        },
-       {
-         test: /\.css$/,
-         use: [
-           'style-loader',
-           'css-loader'
-         ]
-       },
-       {
-         test: /\.(png|svg|jpg|gif)$/,
-         use: [
-           'file-loader'
-         ]
-       },
-       {
-         test: /\.(woff|woff2|eot|ttf|otf)$/,
-         use: [
-           'file-loader'
-         ]
-       }
+      {
+        test: /\.(js)$/,
+        loader: [
+          'babel-loader',
+          'eslint-loader',
+        ],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader',
+        ],
+      },
     ],
-  }
+  },
 };
