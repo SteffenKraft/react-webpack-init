@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -8,7 +9,7 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: '[name].bundle.js',
+    filename: '[name].bundle.[chunkhash].js',
   },
   devServer: {
     contentBase: path.resolve(__dirname, './src'),
@@ -44,4 +45,7 @@ module.exports = {
       },
     ],
   },
+  plugins: [new HtmlWebpackPlugin({
+    template: './index.html',
+  })],
 };
